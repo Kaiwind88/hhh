@@ -1,0 +1,118 @@
+
+\documentclass[12pt,letterpaper]{report}
+\usepackage{natbib}
+\usepackage{geometry}
+%\usepackage{fancyheadings} fancyheadings is obsolete: replaced by fancyhdr. JL
+\usepackage{fancyhdr}
+\usepackage{afterpage}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsbsy}
+\usepackage{dcolumn,array}
+\usepackage{tocloft}
+\usepackage{asudis}
+\usepackage{empheq}
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{textcomp}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage[bottom]{footmisc}
+% \usepackage[utf8]{inputenc}
+
+%% Kai shortcuts
+\newcommand{\etal}{\textit{et al}. }
+\newcommand{\etc}{\textit{etc}. }
+\newcommand{\ie}{\textit{i}.\textit{e}. }
+\newcommand{\eg}{\textit{e}.\textit{g}. }
+\newcommand{\wrt}{\textit{w}.\textit{r}.\textit{t}. }
+\newcommand{\abbr}{\textit{abbr}. }
+\DeclareMathOperator*{\argmin}{argmin}   % Jan Hlavacek
+\DeclareMathOperator*{\argmax}{argmax}   % Jan Hlavacek
+\DeclareMathOperator*{\hone}{\mathcal{H}_1}
+\DeclareMathOperator*{\hzero}{\mathcal{H}_0}
+
+
+%%
+\begin{document}
+%-----------------------front matter
+\pagenumbering{roman}
+\title{Physics-based Lidar Simulation}
+\author{Kai Zhou}
+\degreeName{Doctor of Philosophy}
+\defensemonth{November}
+\gradmonth{December}
+\gradyear{2018}
+\chair{Ronald Calhoun, Chair \\ Kangping Chen\\ Wenbo Tang\\ Yulia Peet\\ Raghavendra Krishnamurthy}		
+\maketitle
+\doublespace
+\include{abstract}
+\dedicationpage{\\Enter content here.}
+\acknowledgementpage{}
+%\include{ack}
+\tableofcontents
+% This puts the word "Page" right justified above everything else.
+\addtocontents{toc}{~\hfill Page\par}
+% Asking LaTeX for a new page here guarantees that the LOF is on a separate page
+% after the TOC ends.
+\newpage
+% Making the LOT and LOF "parts" rather than chapters gets them indented at
+% level -1 according to the chart: top of page 4 of the document at
+% ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/tocloft/tocloft.pdf
+
+% This gets the headers for the LOT right on the first page.  Subsequent pages
+% are handled by the fancyhdr code in the asudis.sty file.
+\addcontentsline{toc}{part}{LIST OF TABLES}
+\listoftables
+\addtocontents{lot}{Table~\hfill Page \par}
+\newpage
+\addcontentsline{toc}{part}{LIST OF FIGURES}
+\listoffigures
+\addtocontents{lof}{Figure~\hfill Page \par}
+\newpage
+\addcontentsline{toc}{part}{LIST OF SYMBOLS}
+\clearpage
+\symbolspage{}
+\addcontentsline{toc}{part}{PREFACE}
+\clearpage
+\addtocontents{toc}{CHAPTER \par}					
+\prefacepage{\\Enter content here.}
+
+% This gets the headers for the LOF right on the first page.  Subsequent pages
+% are handled by the fancyhdr code in the asudis.sty file.
+
+
+%-----------------------body
+\doublespace
+
+\pagenumbering{arabic}
+\include{chapter1}
+\include{chapter2}
+\include{chapter3_background}
+\include{chapter_Experimental_Setup}
+\include{chapter4_pulse}
+\include{chapter5_Propagation}
+\include{chapter6_AFE}
+\include{chapter7_TDC}
+\include{chapter8_ADC_BM}
+\include{chapter9_ADC_MF}
+\include{MF}
+\include{chapter9}
+
+
+%-----------------------back matter
+{\singlespace
+% Making the references a "part" rather than a chapter gets it indented at
+% level -1 according to the chart: top of page 4 of the document at
+% ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/tocloft/tocloft.pdf
+\addcontentsline{toc}{part}{REFERENCES}
+\bibliographystyle{asudis}
+\bibliography{dis}}
+\renewcommand{\chaptername}{APPENDIX}
+\addtocontents{toc}{APPENDIX \par}
+\appendix
+\include{appendix_pulse}
+\include{appendix_TDCcomp}
+\include{appendix_MF}
+\include{vita}
+\end{document}

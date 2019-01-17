@@ -1,0 +1,30 @@
+\chapter{Derivation of Relationship between Pulse Width and Rise Time}
+%% derivation of sigma ~ FWHM and rise time
+It can be derived from the rise time $t_r$ which is parameter people are more interested in. The rise time is defined as the time taken by a pulse to rise from 10\% to 90\% of its peak power. At the 90\% of the peak power, the instantaneous power is:
+\begin{equation}
+0.9P_0 = P_0e^{-\frac{-t_{90\%}^2}{2\sigma^2}}
+\end{equation}
+from which we can obtain
+\begin{equation}
+t_{90\%}=\sqrt{-2ln(0.9)} \approx0.459\sigma
+\end{equation}
+Similarly, we can obtain $t_{10\%} \approx2.146\sigma$ from
+\begin{equation}
+0.1P_0 = P_0e^{-\frac{-t_{10\%}^2}{2\sigma^2}}
+\end{equation}
+Thus, the rise time $t_r$ can be expressed by:
+\begin{equation}
+t_r = t_{10\%}-t_{90\%}\approx1.687\sigma
+\end{equation}
+Or
+\begin{equation}
+\sigma\approx\frac{t_r}{1.687}
+\end{equation}
+The pulse width of a laser pulse, which is usually defined as the Full Width Half Maximum (FWHM) of the pulse, can also be derived from Equation~\ref{eq: GauModel} :
+\begin{equation}
+0.5P_0 = P_0e^{-\frac{-t_{{\mathit{FWHM}}}^2}{2\sigma^2}}
+\end{equation}
+and
+\begin{equation}
+{\mathit{FWHM}}=2\sqrt{2ln2\sigma}\approx2.355\sigma
+\end{equation}

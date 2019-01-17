@@ -1,0 +1,58 @@
+\chapter{Derivation of Walk-error Compensation Algorithms}
+\section{TOT Compensation Derivation}
+In the TOT compensation, the  $TOT$ is measured from the two stop channels of the TDC. 
+As we know $TOT = 2(|t_{ref}| - \Delta_w)$,  applying data points ($t_{ref}$, $V_{th}$) and ($TOT/2$, $V_{th}$) into the pulse function
+\begin{equation}
+V(t) = V_re^{-\frac{t^2}{2\sigma^2}} \label{eq:0}
+\end{equation} we have:
+\begin{empheq}[left=\empheqlbrace]{align}
+V_{th} &= V_{ref}e^{-t_{ref}^2 / 2\sigma^2} \label{eq:arr1}\\
+V_{th} &= V_re^{-(|t_{ref}| - \Delta_w)^2 / 2\sigma^2} \label{eq:arr2}
+\end{empheq}
+Reorganizing  Equation \eqref{eq:arr1} and \eqref{eq:arr2}, we have:
+\begin{align}
+&\frac{V_{ref}}{V_r} = e^{-[(|t_{ref}| - \Delta_w)^2 - t_{ref}^2] / 2\sigma^2} \\
+&\Delta_w^2  -2\Delta_w|t_{ref}| + 2\sigma^2\ln(\frac{V_{ref}}{V_r}) = 0 \label{eq:2}
+\end{align}
+Solving \eqref{eq:2} we obtain
+\begin{equation}
+\label{eq:3}
+\Delta_w = |t_{ref} | \pm \sqrt{t_{ref}^2 - 2\sigma^2\ln(\frac{V_{ref}}{V_r})} 
+\end{equation}
+The $V_r$ can be derived from Equation \eqref{eq:0} by setting $t = TOT/2$, and we know $\Delta_w$ is usually smaller than $t_{ref}$. Therefore, we obtain the walk error $\Delta_w$ as a function of $TOT$ and comparator threshold $V_{th}$ :
+\begin{align}
+\Delta_w &=f(TOT, V_{th}, t_{ref}, V_{ref})= |t_{ref}| - \sqrt{t_{ref}^2 - 2\sigma^2\ln(\frac{V_{ref}}{V_r})} \\
+V_{r}&=\frac{V_{th}}{e^{-(\frac{TOT}{2})^2 / 2\sigma^2}} 
+\end{align}
+
+%%
+\newpage
+\section{Slew-rate Compensation Derivation}
+In the slew-rate compensation, the TDC provides time marks $STOP_1$ and $STOP_2$ at two stop channels for thresholds $V_{th1}$ and $V_{th2} = CV_{th1}$, respectively.  $C$ is a preset constant. The time difference between the two time marks $\Delta t = STOP_2 - STOP_1$.
+
+Plugging the measured time stamps and amplitudes into the pulse function: 
+\begin{equation}
+V(t) = V_re^{-\frac{t^2}{2\sigma^2}} \label{eq:0}
+\end{equation}
+we have:
+\begin{empheq}[left=\empheqlbrace]{align}
+V_{th1} &= \frac{V_r}{e^{-STOP_1^2 / 2\sigma^2}} \label{eq:1}\\
+V_{th2} &= \frac{V_r}{e^{-STOP_2^2 / 2\sigma^2}} \label{eq:2}
+\end{empheq}
+
+Solving Equation \eqref{eq:1} and \eqref{eq:2}, we have
+\begin{align}
+&STOP_2 = -\sqrt{-2\sigma^2\ln C + STOP_1^2} \\
+&\Delta t = STOP_2 - STOP_1 =  -\sqrt{-2\sigma^2\ln C + STOP_1^2} - STOP_1
+\end{align}
+Thus,
+$$ STOP_1 = \frac{-2\sigma^2\ln C - \Delta t^2}{2\Delta t}$$
+As defined before:
+$$
+\Delta_w = STOP_1 - t_{ref}
+$$
+we obtain the relation of $\Delta_w$ with the threshold constant $C$ and time mark difference $\Delta t$:
+$$
+\Delta_w = f(C, \Delta t, t_{ref}) = \frac{-2\sigma^2\ln C - \Delta t^2}{2\Delta t} - t_{ref}
+$$
+
